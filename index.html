@@ -112,7 +112,7 @@
 
         /* --- TYPOGRAPHY --- */
         h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 4.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1rem; }
-        p { font-size: clamp(0.95rem, 1.3vw, 1.15rem); color: var(--muted); max-width: 480px; line-height: 1.5; letter-spacing: -0.01em; }
+        p { font-size: clamp(0.95rem, 1.3vw, 1.15rem); color: var(--muted); line-height: 1.5; letter-spacing: -0.01em; }
 
         /* --- HERO TEXT --- */
         .hero { perspective: 2000px; overflow: hidden; }
@@ -137,7 +137,12 @@
 
         /* --- SPLIT LAYOUT --- */
         .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; width: 100%; align-items: center; z-index: 2; }
-        .text-content { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease); }
+        .text-content { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease); max-width: 480px; }
+        
+        /* Desktop alignment centering tricks */
+        .split-layout:not([style*="direction: rtl"]) .text-content { margin-left: auto; }
+        .split-layout[style*="direction: rtl"] .text-content { margin-right: auto; }
+
         .visual-content { display: flex; justify-content: center; opacity: 0; transform: scale(0.95) rotateY(10deg); transition: all 1s var(--ease) 0.1s; }
         .section.is-active .text-content { opacity: 1; transform: translateY(0); }
         .section.is-active .visual-content { opacity: 1; transform: scale(1) rotateY(0deg); }
@@ -174,6 +179,8 @@
             .dynamic-word { left: 50%; transform: translate(-50%, 20px); }
             .dynamic-word.active { transform: translate(-50%, 0); }
             .split-layout { grid-template-columns: 1fr; text-align: center; gap: 4vh; }
+            .split-layout:not([style*="direction: rtl"]) .text-content { margin-left: auto; margin-right: auto; }
+            .split-layout[style*="direction: rtl"] .text-content { margin-right: auto; margin-left: auto; }
             .visual-content { order: -1; } .tag { margin-inline: auto; } p { margin-inline: auto; }
             footer { grid-template-columns: 1fr 1fr; } .glass-island { padding: 5vw; height: auto; }
         }
@@ -189,9 +196,9 @@
             .hero-text-block { position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; z-index: 5; pointer-events: none; }
             .hero-text-block h1 { 
                 display: flex; flex-direction: column; justify-content: space-between; align-items: center; 
-                height: 57vh; /* Increased from 52vh to space text further apart from the phone */
+                height: 72vh; /* Greatly increased to push text to the top and bottom of the container */
                 width: 100%; line-height: 0.85; 
-                font-size: clamp(3.2rem, 18vw, 6rem); /* Slightly scaled down text to prevent edge clipping */
+                font-size: clamp(3rem, 18vw, 5.5rem); 
                 margin: 0; 
             }
             .word-cycler { display: flex; justify-content: center; width: 100%; }
@@ -202,7 +209,7 @@
 
             /* MOCKUPS */
             .phone-wrapper { flex-shrink: 0; }
-            #hero-phone.phone-wrapper { width: clamp(160px, 45vw, 240px); margin: 0 auto; z-index: 10; }
+            #hero-phone.phone-wrapper { width: clamp(140px, 40vw, 210px); margin: 0 auto; z-index: 10; }
             .phone-dynamic-island { height: clamp(10px, 2.5%, 20px); top: 2%; }
             .phone-body { border-radius: clamp(24px, 8%, 38px); border-width: clamp(2px, 1vw, 5px); }
 
@@ -232,7 +239,7 @@
 
         @media (max-height: 700px) and (max-width: 768px) {
             .section { padding-top: 70px; } .glass-island { padding: 2.5vh 4vw; }
-            .hero-text-block h1 { height: 62vh; font-size: clamp(3rem, 16vw, 5rem); }
+            .hero-text-block h1 { height: 75vh; font-size: clamp(2.8rem, 16vw, 4.5rem); }
             #hero-phone.phone-wrapper { width: clamp(130px, 38vw, 170px); }
             .visual-content .phone-wrapper { width: clamp(110px, 30vw, 140px); }
             h2 { font-size: clamp(1.4rem, 6vw, 1.8rem); } p { font-size: 0.8rem; line-height: 1.3; }
@@ -252,7 +259,7 @@
         <a href="index.html" class="top-bar-logo">
             <img src="app_logo.png" alt="Better Nights Logo">
         </a>
-        </header>
+    </header>
 
     <div class="scroll-container" id="scroll-wrapper">
 
@@ -304,10 +311,34 @@
             </div>
         </section>
 
-        <section class="section" id="live-map">
+        <section class="section" id="host-section">
             <div class="glass-island">
                 <div class="split-layout" style="direction: rtl;">
                     <div class="text-content" style="direction: ltr;">
+                        <div class="tag purple">Hosting</div>
+                        <h2>Pack the<br>house.</h2>
+                        <p>Whether you're a bar owner looking to fill the dance floor or hosting a house party, effortlessly create events to attract the exact crowd you want and put your spot on the map.</p>
+                    </div>
+                    <div class="visual-content">
+                        <div class="phone-wrapper" style="pointer-events: none;">
+                            <div class="phone-pivot">
+                                <div class="phone-body">
+                                    <div class="phone-edge"></div>
+                                    <img src="create_screen.png" alt="Create a Party" class="phone-screen">
+                                    <div class="phone-glare"></div>
+                                    <div class="phone-dynamic-island"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="live-map">
+            <div class="glass-island">
+                <div class="split-layout">
+                    <div class="text-content">
                         <div class="tag">Active Map</div>
                         <h2>Navigate with<br><span class="accent">confidence.</span></h2>
                         <p>Visualize campus activity in real-time. Monitor gathering sizes, explore new connections, and make informed decisions about your evening.</p>
@@ -330,8 +361,8 @@
 
         <section class="section" id="hazard">
             <div class="glass-island">
-                <div class="split-layout">
-                    <div class="text-content">
+                <div class="split-layout" style="direction: rtl;">
+                    <div class="text-content" style="direction: ltr;">
                         <div class="tag orange">Live Updates</div>
                         <h2 style="background: linear-gradient(180deg, #fff 0%, var(--accent-hazard) 100%); -webkit-background-clip: text;">Identify.<br>Report.</h2>
                         <p>See exactly what's happening around campus. You can easily view and report many different types of danger—from blocked routes to active incidents—keeping yourself and others out of harm's way.</p>
@@ -354,8 +385,8 @@
 
         <section class="section" id="sos-section">
             <div class="glass-island">
-                <div class="split-layout" style="direction: rtl;">
-                    <div class="text-content" style="direction: ltr;">
+                <div class="split-layout">
+                    <div class="text-content">
                         <div class="tag red">SOS</div>
                         <h2 style="background: linear-gradient(180deg, #fff 0%, var(--accent-red) 100%); -webkit-background-clip: text;">Immediate assistance.<br>Absolute privacy.</h2>
                         <p>When you're in danger, your trusted friends get your live location in just one button press. It's totally secure, and those you don't want to have it, don't get it.</p>
