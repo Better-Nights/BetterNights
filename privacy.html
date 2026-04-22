@@ -3,34 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Bttr Nghts</title>
+    <title>Privacy Policy | Better Nights</title>
+    <link rel="icon" type="image/png" href="app_logo.png">
+    <style>
+        :root {
+            --bg: #030303; --fg: #ffffff; --muted: #888888;
+            --accent-purple: #B6A6E9;
+            --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            --font-body: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            height: 100%; background-color: var(--bg); color: var(--fg);
+            font-family: var(--font-body); overflow-x: hidden;
+            -webkit-font-smoothing: antialiased; scroll-behavior: smooth;
+        }
+
+        .dot-matrix-wrapper { position: fixed; top: -20vh; left: -20vw; right: -20vw; bottom: -50vh; z-index: -1; pointer-events: none; }
+        .dot-layer { position: absolute; inset: -100px; width: calc(100% + 200px); height: calc(100% + 200px); }
+        .dot-layer-1 { background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 2px); background-size: 60px 60px; animation: panDots 120s linear infinite; }
+        @keyframes panDots { from { background-position: 0 0; } to { background-position: 1200px 1200px; } }
+
+        .top-bar {
+            position: fixed; top: 0; left: 0; right: 0; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 4vw; z-index: 100; background: rgba(3, 3, 3, 0.4);
+            backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .top-bar-logo { display: block; height: 40px; text-decoration: none; }
+        .top-bar-logo img { height: 100%; width: auto; border-radius: 10px; object-fit: contain; }
+
+        .page-container {
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 120px 4vw 40px;
+        }
+
+        .glass-panel {
+            width: 100%; max-width: 900px; border-radius: 40px;
+            background: rgba(12, 12, 12, 0.4); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1); padding: 5rem 4rem;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5); margin-bottom: 40px;
+        }
+
+        h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1.5rem; }
+        h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 2.5rem 0 1rem; color: #fff; letter-spacing: 0.02em; text-transform: uppercase; }
+        p { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.2rem; }
+        .last-updated { font-size: 0.85rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; }
+        ul { margin: 0 0 1.6rem 1.2rem; }
+        li { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.8rem; }
+
+        footer {
+            width: 100%; max-width: 900px; padding: 2rem 3rem; background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 40px;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+        }
+        .footer-col h4 { font-size: 0.8rem; font-weight: 600; color: #aaa; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .footer-col ul { list-style: none; margin: 0; }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
+        .footer-col ul a:hover { color: var(--accent-purple); }
+        .copyright { grid-column: 1 / -1; padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); color: #555; font-size: 0.85rem; text-align: center; }
+
+        @media (max-width: 768px) {
+            .glass-panel { padding: 3rem 1.5rem; border-radius: 24px; }
+            footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; border-radius: 24px; }
+            .footer-col:first-child { grid-column: 1 / -1; text-align: center; }
+            .footer-col:first-child p { margin: 0.5rem auto 0; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p><strong>Last updated: April 22, 2026</strong></p>
+    <div class="dot-matrix-wrapper"><div class="dot-layer dot-layer-1"></div></div>
 
-    <p>At Bttr Nghts, our mission is to keep people safe and help people meet each other. This policy explains what information we collect, how it is used, and how we protect it.</p>
-    
-    <h3>1. Information We Collect</h3>
-    <ul>
-        <li><strong>Account Information:</strong> When you create an account, we collect your phone number for SMS verification, as well as your name and profile details.</li>
-        <li><strong>Location Data:</strong> We collect precise device location data (both in the foreground and background) to enable core features such as routing emergency alerts when the SOS function is used, and to verify attendance and matching within the Parties feature.</li>
-        <li><strong>Usage Data:</strong> Basic interaction data to help us monitor app performance and security.</li>
-    </ul>
-    
-    <h3>2. How We Use Your Information</h3>
-    <p>We use your data exclusively to operate the Bttr Nghts app. This includes matching you with other users, facilitating events, and ensuring emergency contacts or services receive accurate coordinates if you activate an SOS.</p>
-    
-    <h3>3. SMS Consent & Communications</h3>
-    <p>By providing your phone number and clicking "Continue," you consent to receive a one-time verification SMS from Bttr Nghts. Message and data rates may apply. You can opt-out at any time by replying STOP. Your SMS consent and phone number are not shared with third parties for marketing purposes.</p>
+    <header class="top-bar">
+        <a href="index.html" class="top-bar-logo">
+            <img src="app_logo.png" alt="Better Nights Logo">
+        </a>
+    </header>
 
-    <h3>4. Data Sharing and Security</h3>
-    <p>We do not sell your personal data. Information is only shared with third-party cloud infrastructure providers necessary to host the app's databases, or with emergency services if an SOS is activated. All data is transmitted securely.</p>
-    
-    <h3>5. Your Rights</h3>
-    <p>You have the right to access, modify, or permanently delete your account and associated data at any time directly through the app's settings.</p>
+    <div class="page-container">
+        <div class="glass-panel">
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">Last updated: April 20, 2026</div>
 
-    <h3>6. Contact</h3>
-    <p>If you have any questions regarding this Privacy Policy, please contact us at williamrcleaves@gmail.com</p>
+            <p>At Better Nights, our mission is to keep people safe and help people meet each other. This policy explains what information we collect, how it is used, and how we protect it.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>To provide our services, we collect the following types of information:</p>
+            <ul>
+                <li><strong>Account Information:</strong> When you create an account, we collect your phone number for SMS verification, as well as your name and profile details.</li>
+                <li><strong>Location Data:</strong> We collect precise device location data (both in the foreground and background) to enable core features such as routing emergency alerts when the SOS function is used, and to verify attendance and matching within the Parties feature.</li>
+                <li><strong>Usage Data:</strong> Basic interaction data to help us monitor app performance and security.</li>
+            </ul>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We use your data exclusively to operate the Better Nights app. This includes matching you with other users, facilitating events, and ensuring emergency contacts or services receive accurate coordinates if you activate an SOS.</p>
+
+            <h3>3. Data Sharing and Security</h3>
+            <p>We do not sell your personal data. Information is only shared with third-party cloud infrastructure providers necessary to host the app's databases, or with emergency services if an SOS is activated. All data is transmitted securely.</p>
+
+            <h3>4. Your Rights</h3>
+            <p>You have the right to access, modify, or permanently delete your account and associated data at any time directly through the app's settings.</p>
+
+            <h3>5. Contact</h3>
+            <p>If you have any questions regarding this Privacy Policy, please contact us at support@betternights.app.</p>
+        </div>
+
+        <footer>
+            <div class="footer-col">
+                <h4 style="color: var(--fg); font-family: var(--font-display); font-size: 1rem; letter-spacing: 0;">Better Nights</h4>
+                <p style="font-size: 0.85rem; max-width: 250px; line-height: 1.4; margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Nightlife discovery and absolute safety.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html">Terms & Privacy</a></li>
+                </ul>
+            </div>
+            <div class="copyright">&copy; 2026 Better Nights. All rights reserved.</div>
+        </footer>
+    </div>
 </body>
 </html>
