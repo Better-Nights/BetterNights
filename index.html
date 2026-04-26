@@ -39,7 +39,7 @@
             --row-screen-left: 50%;
             --row-screen-width: 76.8%;
             --row-screen-scale-x: 1.053;
-            --row-screen-scale-y: 1.018;
+            --row-screen-scale-y: 1.029;
             --row-screen-corner: 31px;
         }
 
@@ -58,6 +58,47 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
+        }
+
+        .app-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 1200;
+            display: grid;
+            place-items: center;
+            background: #080808;
+            transition: opacity 280ms var(--ease), visibility 280ms var(--ease);
+        }
+
+        .app-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .app-loader-inner {
+            display: grid;
+            justify-items: center;
+            gap: 0.7rem;
+        }
+
+        .app-loader-spinner {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 2px solid #2c2c2c;
+            border-top-color: #f2f2f2;
+            animation: app-loader-spin 0.9s linear infinite;
+        }
+
+        .app-loader-label {
+            color: #b8b8b8;
+            font-size: 0.84rem;
+            letter-spacing: 0.02em;
+        }
+
+        @keyframes app-loader-spin {
+            to { transform: rotate(360deg); }
         }
 
         .container {
@@ -97,6 +138,13 @@
             height: 36px;
             border-radius: 10px;
             object-fit: cover;
+            animation: logo-breathe 4.8s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes logo-breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.055); }
         }
 
         .top-nav {
@@ -306,9 +354,6 @@
             transform: translate(-50%, -50%) scaleX(var(--row-screen-scale-x)) scaleY(var(--row-screen-scale-y));
             transform-origin: center center;
         }
-
-
-
 
         .phone-caption {
             margin-top: 0.78rem;
@@ -667,6 +712,12 @@
     </style>
 </head>
 <body>
+    <div class="app-loader" id="app-loader" aria-live="polite" aria-label="Loading page">
+        <div class="app-loader-inner">
+            <div class="app-loader-spinner" aria-hidden="true"></div>
+            <div class="app-loader-label">Loading Bttr Nghts...</div>
+        </div>
+    </div>
     <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
     <header class="top-bar">
         <div class="container top-bar-inner">
@@ -691,7 +742,6 @@
         <section class="hero" id="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <span class="eyebrow">Social app for campus nights</span>
                     <h1>Find your night in seconds.</h1>
                     <p>
                         Bttr Nghts helps you see what is live, where your people are, and how to move through the night with more confidence.
@@ -926,6 +976,29 @@
         </footer>
     </main>
     <script>
+        (function setupAppLoader() {
+            const loader = document.getElementById("app-loader");
+            if (!loader) return;
+
+            function hideLoader() {
+                loader.classList.add("hidden");
+            }
+
+            async function boot() {
+                // Keep loader brief to avoid feeling artificial.
+                await new Promise(function (resolve) { window.setTimeout(resolve, 280); });
+                hideLoader();
+            }
+
+            if (document.readyState === "interactive" || document.readyState === "complete") {
+                boot();
+            } else {
+                document.addEventListener("DOMContentLoaded", boot, { once: true });
+            }
+
+            window.setTimeout(hideLoader, 2400);
+        })();
+
         (function setupScrollProgress() {
             const scroller = document.getElementById("scroll-main");
             const fill = document.getElementById("scroll-progress-fill");
