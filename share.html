@@ -99,9 +99,10 @@
       <div class="code" id="codeDisplay"></div>
       <input type="text" id="hiddenCode" readonly tabindex="-1" autocomplete="off" aria-hidden="true" />
     </div>
-    <button type="button" class="btn btn-primary" id="openApp">Open in app</button>
+    <!-- Safari handles native handoff better with real `<a href="betternights://…">` than JS `location.href` alone. -->
+    <a class="btn btn-primary" id="openApp" href="#">Open in app</a>
     <button type="button" class="btn btn-secondary" id="copyLink">Copy invite link</button>
-    <button type="button" class="btn btn-secondary" id="openHere">Open app &amp; mark I’m here</button>
+    <a class="btn btn-secondary" id="openHere" href="#">Open app &amp; mark I’m here</a>
     <p class="hint" id="hint"></p>
     <p class="hint">Install Better Nights from the App Store, add your phone in the app, then open this link again.</p>
   </div>
@@ -129,9 +130,13 @@
 
   if (!code || code.length < 4) {
     showErr('This link is missing an invite code. Ask the host for a full invite link with ?invite=CODE.');
-    document.getElementById('openApp').disabled = true;
+    document.getElementById('openApp').setAttribute('aria-disabled', 'true');
+    document.getElementById('openApp').style.pointerEvents = 'none';
+    document.getElementById('openApp').style.opacity = '0.5';
     document.getElementById('copyLink').disabled = true;
-    document.getElementById('openHere').disabled = true;
+    document.getElementById('openHere').setAttribute('aria-disabled', 'true');
+    document.getElementById('openHere').style.pointerEvents = 'none';
+    document.getElementById('openHere').style.opacity = '0.5';
     return;
   }
 
@@ -139,32 +144,20 @@
   document.getElementById('codeDisplay').textContent = code;
   document.getElementById('hiddenCode').value = code;
 
-  var schemes = [
-    'betternights://invite?invite=' + encodeURIComponent(code)
-  ];
-  var schemesHere = [
-    'betternights://invite?invite=' + encodeURIComponent(code) + '&action=imhere'
-  ];
+  var schemeInvite = 'betternights://invite?invite=' + encodeURIComponent(code);
+  var schemeHere = schemeInvite + '&action=imhere';
 
-  function tryOpen(list) {
-    if (!list.length) return;
-    window.location.href = list[0];
-    if (list.length < 2) return;
-    setTimeout(function () {
-      if (document.visibilityState === 'visible') {
-        window.location.href = list[1];
-      }
-    }, 650);
-  }
+  var openAppEl = document.getElementById('openApp');
+  var openHereEl = document.getElementById('openHere');
+  openAppEl.href = schemeInvite;
+  openHereEl.href = schemeHere;
 
-  document.getElementById('openApp').addEventListener('click', function () {
-    hintEl.textContent = 'If nothing opens, install the app and try again.';
-    tryOpen(schemes);
+  openAppEl.addEventListener('click', function () {
+    hintEl.textContent = 'If Safari asks, choose Open. If nothing happens, install the app first.';
   });
 
-  document.getElementById('openHere').addEventListener('click', function () {
+  openHereEl.addEventListener('click', function () {
     hintEl.textContent = 'Opens the app and marks you as arrived.';
-    tryOpen(schemesHere);
   });
 
   document.getElementById('copyLink').addEventListener('click', function () {
@@ -181,7 +174,7 @@
 
   if (params.get('autopen') === '1' || params.get('autopen') === 'true') {
     hintEl.textContent = 'Opening app…';
-    tryOpen(schemes);
+    window.location.href = schemeInvite;
   }
 })();
   </script>
