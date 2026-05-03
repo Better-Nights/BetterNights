@@ -20,6 +20,7 @@
       padding: 1.5rem;
       text-align: center;
     }
+    body.modal-open { overflow: hidden; }
     .card {
       background: rgba(36, 36, 36, 0.95);
       border-radius: 18px;
@@ -74,6 +75,11 @@
       color: #eee;
       border: 1px solid rgba(255,255,255,0.2);
     }
+    .btn-giant {
+      font-size: 1.2rem;
+      padding: 1.15rem 1.25rem;
+      margin-top: 0;
+    }
     .hint {
       font-size: 0.8rem;
       color: #8b949e;
@@ -88,24 +94,90 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* Full-screen “open app” prompt — not the small top banner */
+    .app-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(8, 6, 18, 0.92);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    .app-gate[hidden] { display: none !important; }
+    .app-gate__panel {
+      width: 100%;
+      max-width: 400px;
+      background: linear-gradient(165deg, #252030 0%, #1a1828 100%);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 22px;
+      padding: 2rem 1.75rem 1.75rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+    }
+    .app-gate__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .app-gate__sub {
+      color: #a8b4c8;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .app-gate__code {
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 0.9rem;
+      color: #89f0b7;
+      margin-bottom: 1.25rem;
+      word-break: break-all;
+    }
+    .app-gate__dismiss {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #8b949e;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      width: 100%;
+      padding: 0.5rem;
+    }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>You're invited to a party</h1>
-    <p class="lead">Open Better Nights to join. If the app doesn’t open automatically, use the buttons below.</p>
+    <p class="lead">We’ll try to open Better Nights for you. If nothing happens, use Open in app below.</p>
     <p id="err" class="err" hidden></p>
     <div id="codeWrap" hidden>
       <div class="code" id="codeDisplay"></div>
       <input type="text" id="hiddenCode" readonly tabindex="-1" autocomplete="off" aria-hidden="true" />
     </div>
-    <!-- Safari handles native handoff better with real `<a href="betternights://…">` than JS `location.href` alone. -->
     <a class="btn btn-primary" id="openApp" href="#">Open in app</a>
     <button type="button" class="btn btn-secondary" id="copyLink">Copy invite link</button>
     <a class="btn btn-secondary" id="openHere" href="#">Open app &amp; mark I’m here</a>
     <p class="hint" id="hint"></p>
     <p class="hint">Install Better Nights from the App Store, add your phone in the app, then open this link again.</p>
   </div>
+
+  <div id="appGate" class="app-gate" hidden aria-modal="true" role="dialog" aria-labelledby="appGateTitle">
+    <div class="app-gate__panel">
+      <p class="app-gate__title" id="appGateTitle">Open in Better Nights</p>
+      <p class="app-gate__sub">Tap the button to join this party in the app.</p>
+      <p class="app-gate__code" id="appGateCode"></p>
+      <a class="btn btn-primary btn-giant" id="appGateOpen" href="#">Open Better Nights</a>
+      <a class="btn btn-secondary" id="appGateHere" href="#" style="margin-top:0.75rem">Open &amp; mark I’m here</a>
+      <button type="button" class="app-gate__dismiss" id="appGateDismiss">Not now — stay on this page</button>
+    </div>
+  </div>
+
   <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
@@ -123,9 +195,27 @@
   var origin = 'https://betternights.app';
   var universal = origin + '/share.html?invite=' + encodeURIComponent(code);
 
+  var gateEl = document.getElementById('appGate');
+  var gateCodeEl = document.getElementById('appGateCode');
+  var gateOpenEl = document.getElementById('appGateOpen');
+  var gateHereEl = document.getElementById('appGateHere');
+  var gateDismiss = document.getElementById('appGateDismiss');
+  var modalTimer;
+
   function showErr(msg) {
     errEl.textContent = msg;
     errEl.hidden = false;
+  }
+
+  function showGate() {
+    gateEl.hidden = false;
+    document.body.classList.add('modal-open');
+    gateOpenEl.focus();
+  }
+
+  function hideGate() {
+    gateEl.hidden = true;
+    document.body.classList.remove('modal-open');
   }
 
   if (!code || code.length < 4) {
@@ -143,6 +233,7 @@
   document.getElementById('codeWrap').hidden = false;
   document.getElementById('codeDisplay').textContent = code;
   document.getElementById('hiddenCode').value = code;
+  gateCodeEl.textContent = 'Invite code: ' + code;
 
   var schemeInvite = 'betternights://invite?invite=' + encodeURIComponent(code);
   var schemeHere = schemeInvite + '&action=imhere';
@@ -151,13 +242,26 @@
   var openHereEl = document.getElementById('openHere');
   openAppEl.href = schemeInvite;
   openHereEl.href = schemeHere;
+  gateOpenEl.href = schemeInvite;
+  gateHereEl.href = schemeHere;
+
+  var skipAuto =
+    params.get('noautopen') === '1' ||
+    params.get('autopen') === '0' ||
+    params.get('autopen') === 'false';
+  var skipModal = params.get('nomodal') === '1';
 
   openAppEl.addEventListener('click', function () {
-    hintEl.textContent = 'If Safari asks, choose Open. If nothing happens, install the app first.';
+    hintEl.textContent = 'If Safari asks, choose Open.';
   });
 
   openHereEl.addEventListener('click', function () {
     hintEl.textContent = 'Opens the app and marks you as arrived.';
+  });
+
+  gateDismiss.addEventListener('click', function () {
+    hideGate();
+    hintEl.textContent = 'You can use Open in app below anytime.';
   });
 
   document.getElementById('copyLink').addEventListener('click', function () {
@@ -172,9 +276,30 @@
     }
   });
 
+  function armModalFallback() {
+    if (skipModal) return;
+    modalTimer = setTimeout(function () {
+      if (document.visibilityState === 'visible') showGate();
+    }, 850);
+    document.addEventListener('visibilitychange', function onVis() {
+      if (document.visibilityState === 'hidden') {
+        clearTimeout(modalTimer);
+        document.removeEventListener('visibilitychange', onVis);
+      }
+    });
+  }
+
+  if (skipAuto) {
+    if (!skipModal) showGate();
+  } else {
+    armModalFallback();
+    setTimeout(function () {
+      window.location.href = schemeInvite;
+    }, 60);
+  }
+
   if (params.get('autopen') === '1' || params.get('autopen') === 'true') {
     hintEl.textContent = 'Opening app…';
-    window.location.href = schemeInvite;
   }
 })();
   </script>
