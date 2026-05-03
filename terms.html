@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions | Better Nights</title>
+    <title>Terms & Conditions | Bttr Nghts</title>
     <link rel="icon" type="image/png" href="app_logo.png">
     <style>
         :root {
@@ -51,23 +51,69 @@
         p { font-size: 0.95rem; line-height: 1.7; color: var(--muted); margin-bottom: 1.2rem; }
         .last-updated { font-size: 0.85rem; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; }
 
+        .container { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; }
+
         footer {
-            width: 100%; max-width: 900px; padding: 2rem 3rem; background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08); border-radius: 40px;
-            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0 2.4rem;
+            margin-top: 0;
         }
-        .footer-col h4 { font-size: 0.8rem; font-weight: 600; color: #aaa; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.6rem; }
-        .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
-        .footer-col ul a:hover { color: var(--accent-purple); }
-        .copyright { grid-column: 1 / -1; padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); color: #555; font-size: 0.85rem; text-align: center; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #d6d6d6;
+            margin-bottom: 0.55rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+
+        .footer-col a:hover { color: var(--fg); }
+
+        .copyright {
+            margin-top: 1rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid #252525;
+            color: #7f7f7f;
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        .asset-credit {
+            margin-top: 0.55rem;
+            color: #8f8f8f;
+            font-size: 0.74rem;
+            text-align: center;
+        }
+
+        .asset-credit a {
+            color: #a6a6a6;
+            text-decoration: none;
+            display: inline;
+        }
+
+        .asset-credit a:hover { color: #d4d4d4; }
 
         @media (max-width: 768px) {
             .glass-panel { padding: 3rem 1.5rem; border-radius: 24px; }
-            footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; border-radius: 24px; }
-            .footer-col:first-child { grid-column: 1 / -1; text-align: center; }
-            .footer-col:first-child p { margin: 0.5rem auto 0; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -85,6 +131,8 @@
             <h1>Terms and Conditions</h1>
             <div class="last-updated">Last updated: April 20, 2026</div>
 
+            <p>Better Nights and Bttr Nghts are used interchangeably to describe the app for which these terms of service are enacted.</p>
+
             <p>By downloading or using the Better Nights app, you agree to these terms. Please read them carefully.</p>
 
             <h3>1. Acceptable Use</h3>
@@ -94,7 +142,7 @@
             <p>You must provide an accurate phone number to create an account. You are responsible for maintaining the security of your device and the one-time passwords (OTPs) used to access your account.</p>
 
             <h3>3. Limitations of Liability</h3>
-            <p>While Better Nights aims to provide reliable location tracking and safety tools, the app relies on third-party networks, cellular carriers, and GPS accuracy. We cannot guarantee 100% uptime or the immediate response of emergency services. Better Nights is provided "as is" and should not be your only method of emergency communication.</p>
+            <p>While Better Nights aims to provide reliable location tracking and safety tools, the app relies on third-party networks, cellular carriers, and GPS accuracy. We cannot guarantee 100% uptime or the immediate response of emergency services. Better Nights is provided "as is" and should not be your only method of emergency communication. User agrees to defend, indemnify and hold harmless Better Nights and its directors, officers, employees, contractors, agents, suppliers, licensors, successors and assigns, from and against any and all losses, claims, causes of action, obligations, liabilities and damages whatsoever, including attorneys' fees, arising out of or relating to your access or use of the Service, any false representation made to us (as part of these Terms and Conditions or otherwise), your breach of any of these Terms and Conditions, or any claim that any translation we provide to you is inaccurate, inappropriate or defective in any way whatsoever.</p>
 
             <h3>4. User-Generated Content</h3>
             <p>Users are responsible for the content they post or the events they host within the app. We reserve the right to remove any content or cancel any events that violate these terms or community safety guidelines.</p>
@@ -102,28 +150,50 @@
             <h3>5. Modifications to the Service</h3>
             <p>We reserve the right to modify, suspend, or discontinue the app (or any feature within it) at any time without prior notice.</p>
 
-            <h3>6. Contact</h3>
-            <p>For any questions regarding these Terms and Conditions, please contact us at williamrcleaves@gmail.com</p>
+            <h3>6. Intellectual Property</h3>
+            <p>The Better Nights app logo, content, and software are owned by William Cleaves.</p>
+
+            <h3>7. No representations or warranties</h3>
+            <p>The service, including all images, audio files and other content therein, and any other information, property and rights granted or provided to you are provided to you on an “as is” basis. Better Nights and its suppliers make no representations or warranties of any kind with respect to the service, either express or implied, and all such representations and warranties, including warranties of merchantability, fitness for a particular purpose or non-infringement, are expressly disclaimed. Without limiting the generality of the foregoing, Better Nights does not make any representation or warranty of any kind relating to accuracy, service availability, completeness, informational content, error-free operation, results to be obtained from use, or non-infringement. Access and use of the service may be unavailable during periods of peak demand, system upgrades, malfunctions or scheduled or unscheduled maintenance or for other reasons. Some jurisdictions do not allow the exclusion of implied warranties, so the above exclusion may not apply to you.</p>
+
+            <h3>8. Limitation on types of damages/limitation of liability</h3>
+            <p>To the maximum extent permitted by applicable law, in no event will Better Nights be liable to you or any third party claiming through you (whether based in contract, tort, strict liability or other theory) for indirect, incidental, special, consequential or exemplary damages arising out of or relating to the access or use of, or the inability to access or use, the service or any portion thereof, including but not limited to the loss of use of the service, inaccurate results, loss of profits, business interruption, or damages stemming from loss or corruption of data or data being rendered inaccurate, the cost of recovering any data, the cost of substitute services or claims by third parties for any damage to computers, software, modems, telephones or other property, even if Better Nights has been advised of the possibility of such damages. To the maximum extent permitted by applicable law, Better Nights' liability to you or any third party claiming through you for any cause whatsoever, and regardless of the form of the action, is limited to the amount paid, if any, by you to Better Nights for the service in the 12 months prior to the initial action giving rise to liability. This is an aggregate limit. The existence of more than one claim hereunder will not increase this limit.</p>
+            <p>You understand and agree that we have set our prices and entered into these terms and conditions with you in reliance upon the limitations of liability set forth in these terms and conditions, which allocate risk between us and form the basis of a bargain between the parties.</p>
+
+            <h3>9. Refunds</h3>
+            <p>Refunds are handled through the Apple App Store and not by the Better Nights app.</p>
+
+            <h3>10. Venue and jurisdiction</h3>
+            <p>All judicial proceedings relating to or arising out of these Terms and Conditions or the Service shall be brought in the state or federal courts sitting in San Diego County, California. Both parties hereby consent to the personal jurisdiction of the state and federal courts sitting in San Diego County, California, and waive any objections to venue in those courts.</p>
+
+            <h3>11. Contact</h3>
+            <p>For any questions regarding these Terms and Conditions, please contact us at <a href="mailto:bttrnghts@gmail.com" style="color: var(--accent-purple);">bttrnghts@gmail.com</a>.</p>
         </div>
 
         <footer>
-            <div class="footer-col">
-                <h4 style="color: var(--fg); font-family: var(--font-display); font-size: 1rem; letter-spacing: 0;">Better Nights</h4>
-                <p style="font-size: 0.85rem; max-width: 250px; line-height: 1.4; margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Nightlife discovery and absolute safety.</p>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Bttr Nghts</h4>
+                        <p>The social app for campus nights: maps, hangouts, and friends, with private safety when you need it.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="/about" target="_blank" rel="noopener noreferrer">About</a>
+                        <a href="https://betternights.app/legal" target="_blank" rel="noopener noreferrer">Legal</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Policies</h4>
+                        <a href="/terms" target="_blank" rel="noopener noreferrer">Terms</a>
+                        <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+                    </div>
+                </div>
+                <div class="copyright">&copy; William Cleaves 2026. All rights reserved.</div>
+                <div class="asset-credit">
+                    3D phone model by Ranguel (CC BY), via
+                    <a href="https://sketchfab.com/3d-models/iphone-17-pro-4541aa8a28324b33a2baaf81d263aaec" target="_blank" rel="noopener noreferrer">Sketchfab</a>.
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="legal.html">Terms & Privacy</a></li>
-                </ul>
-            </div>
-            <div class="copyright">&copy; 2026 Better Nights. All rights reserved.</div>
         </footer>
     </div>
 </body>

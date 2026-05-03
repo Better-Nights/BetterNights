@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Better Nights</title>
+    <title>Privacy Policy | Bttr Nghts</title>
     <link rel="icon" type="image/png" href="app_logo.png">
     <style>
         :root {
@@ -53,23 +53,69 @@
         ul { margin: 0 0 1.6rem 1.2rem; }
         li { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.8rem; }
 
+        .container { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; }
+
         footer {
-            width: 100%; max-width: 900px; padding: 2rem 3rem; background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08); border-radius: 40px;
-            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0 2.4rem;
+            margin-top: 0;
         }
-        .footer-col h4 { font-size: 0.8rem; font-weight: 600; color: #aaa; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        .footer-col ul { list-style: none; margin: 0; }
-        .footer-col ul li { margin-bottom: 0.6rem; }
-        .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
-        .footer-col ul a:hover { color: var(--accent-purple); }
-        .copyright { grid-column: 1 / -1; padding-top: 1.5rem; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05); color: #555; font-size: 0.85rem; text-align: center; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #d6d6d6;
+            margin-bottom: 0.55rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+
+        .footer-col a:hover { color: var(--fg); }
+
+        .copyright {
+            margin-top: 1rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid #252525;
+            color: #7f7f7f;
+            font-size: 0.82rem;
+            text-align: center;
+        }
+
+        .asset-credit {
+            margin-top: 0.55rem;
+            color: #8f8f8f;
+            font-size: 0.74rem;
+            text-align: center;
+        }
+
+        .asset-credit a {
+            color: #a6a6a6;
+            text-decoration: none;
+            display: inline;
+        }
+
+        .asset-credit a:hover { color: #d4d4d4; }
 
         @media (max-width: 768px) {
             .glass-panel { padding: 3rem 1.5rem; border-radius: 24px; }
-            footer { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; border-radius: 24px; }
-            .footer-col:first-child { grid-column: 1 / -1; text-align: center; }
-            .footer-col:first-child p { margin: 0.5rem auto 0; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -87,6 +133,8 @@
             <h1>Privacy Policy</h1>
             <div class="last-updated">Last updated: April 20, 2026</div>
 
+            <p>Better Nights and Bttr Nghts are used interchangeably to describe the app for which this privacy policy is enacted.</p>
+
             <p>At Better Nights, our mission is to keep people safe and help people meet each other. This policy explains what information we collect, how it is used, and how we protect it.</p>
 
             <h3>1. Information We Collect</h3>
@@ -103,31 +151,49 @@
             <h3>3. Data Sharing and Security</h3>
             <p>We do not sell your personal data. Information is only shared with third-party cloud infrastructure providers necessary to host the app's databases, or with emergency services if an SOS is activated. All data is transmitted securely.</p>
 
-            <h3>4. Your Rights</h3>
+            <h3>4. Data Retention</h3>
+            <p>To ensure your account stays operational, Better Nights will generally retain your personal information until your account is deleted. However, Better Nights may retain certain information longer if necessary to provide our Service, defend our legitimate interests or those of third parties, comply with legal requirements, resolve or defend ourselves in disputes, investigate misuse or disruption of the Service, or perform agreements. We may also retain anonymous data indefinitely.</p>
+
+            <h3>5. Underage Users</h3>
+            <p>Better Nights is for users 18+. Users under the age of 18 are prohibited.</p>
+
+            <h3>6. Links to Third-Party Websites</h3>
+            <p>The Service may contain links to other websites. Better Nights is not responsible for the content or privacy practices of other websites, including any personal or financial information collected by third-party payment processors. We encourage users to be aware of the privacy policies of other websites they visit. This Privacy Policy applies only to information collected by Better Nights. Any time you click on a link (including advertising banners) or submit your personal information to a third-party website, you will be subject to that third party’s privacy policies.</p>
+
+            <h3>7. Data Transfer</h3>
+            <p>Better Nights is based in, and processes all data in, the United States. Better Nights is not to be used outside the borders of the United States and does not transfer data between the United States and any other country.</p>
+
+            <h3>8. Your Rights</h3>
             <p>You have the right to access, modify, or permanently delete your account and associated data at any time directly through the app's settings.</p>
 
-            <h3>5. Contact</h3>
-            <p>If you have any questions regarding this Privacy Policy, please contact us at williamrcleaves@gmail.com</p>
+            <h3>9. Contact</h3>
+            <p>If you have any questions regarding this Privacy Policy, please contact us at <a href="mailto:bttrnghts@gmail.com" style="color: var(--accent-purple);">bttrnghts@gmail.com</a>.</p>
         </div>
 
         <footer>
-            <div class="footer-col">
-                <h4 style="color: var(--fg); font-family: var(--font-display); font-size: 1rem; letter-spacing: 0;">Better Nights</h4>
-                <p style="font-size: 0.85rem; max-width: 250px; line-height: 1.4; margin-top: 0.5rem; text-transform: none; letter-spacing: 0;">Nightlife discovery and absolute safety.</p>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4>Bttr Nghts</h4>
+                        <p>The social app for campus nights: maps, hangouts, and friends, with private safety when you need it.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="/about" target="_blank" rel="noopener noreferrer">About</a>
+                        <a href="https://betternights.app/legal" target="_blank" rel="noopener noreferrer">Legal</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Policies</h4>
+                        <a href="/terms" target="_blank" rel="noopener noreferrer">Terms</a>
+                        <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+                    </div>
+                </div>
+                <div class="copyright">&copy; William Cleaves 2026. All rights reserved.</div>
+                <div class="asset-credit">
+                    3D phone model by Ranguel (CC BY), via
+                    <a href="https://sketchfab.com/3d-models/iphone-17-pro-4541aa8a28324b33a2baaf81d263aaec" target="_blank" rel="noopener noreferrer">Sketchfab</a>.
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="legal.html">Terms & Privacy</a></li>
-                </ul>
-            </div>
-            <div class="copyright">&copy; 2026 Better Nights. All rights reserved.</div>
         </footer>
     </div>
 </body>
